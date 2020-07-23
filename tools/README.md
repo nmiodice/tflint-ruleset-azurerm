@@ -8,6 +8,12 @@ This script generate rules from [azure-rest-api-specs](https://github.com/Azure/
 
 The correspondence between API definitions and Terraform attributes is defined in the [mapping files](apispec-rule-gen/mappings). It also includes Terraform's schema file to check for invalid mappings.
 
+### Initialize and pull down files in the the azure-rest-api-specs submodule
+```console
+$ cd apispec-rule-gen/azure-rest-api-specs
+$ git submodule update --init --recursive
+```
+
 ### Update azure-rest-api-specs
 
 ```console
@@ -23,6 +29,7 @@ $ go run ./apispec-rule-gen
 $ cd apispec-rule-gen/schema
 $ tfenv install
 # Edit provider.tf to update provider version
+$ terraform init
 $ terraform providers schema -json > schema.json
 $ cd ../../
 $ go run ./apispec-rule-gen
